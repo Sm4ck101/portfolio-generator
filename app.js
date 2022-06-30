@@ -1,24 +1,39 @@
-const fs = require('fs');
-const generatePage = require('./src/page-template.js')
-const profileDataArgs = process.argv.slice(2, process.argv.length);
-const [name, github] = profileDataArgs;
+import inquirer from 'inquirer';
 
-fs.writeFile('./index.html', generatePage(name, github), err =>   {
-    if (err) throw new Error(err);
-    console.log('Portfolio is complete! Check out index.html to see the output!');
-});
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What is your name?'
+    }
+  ])
+  .then(answers => console.log(answers));
 
 
-// const printProfileData = profileDataArr => {
-//   // This...
-//   for (let i = 0; i < profileDataArr.length; i += 1) {
-//     console.log(profileDataArr[i]);
+
+
+// import inquirer from 'inquirer';
+// const response = await inquirer.prompt([
+//   {
+//     type: 'input',
+//     name: 'question',
+//     message: 'Want to answer?'
 //   }
+// ]);
+// console.log(response.name); 
 
-//   console.log('================');
 
-//   // Is the same as this...
-//   profileDataArr.forEach(profileItem => console.log(profileItem));
-// };
+// const inquirer = require('inquirer')
+// console.log(inquirer)
 
-// printProfileData(profileDataArgs);
+// const fs = require('fs');
+// const generatePage = require('./src/page-template');
+
+// const pageHTML = generatePage(name, github);
+
+// fs.writeFile('./index.html', pageHTML, err => {
+//   if (err) throw err;
+
+//   console.log('Portfolio complete! Check out index.html to see the output!');
+// });
